@@ -161,7 +161,7 @@
     double zoomExponent = log(zoomScale) / log(2);
     double zoomLevel = 20 - zoomExponent;
     
-    return zoomLevel;
+    return roundf(zoomLevel);
 }
 
 
