@@ -81,7 +81,7 @@
                    animated:(BOOL)animated
 {
     // clamp large numbers to 28
-    zoomLevel = MIN(zoomLevel, 28);
+    zoomLevel = MAX(MIN(zoomLevel, 28), 1);
     
     // use the zoom level to compute the region
     MKCoordinateSpan span = [self coordinateSpanWithMapView:self centerCoordinate:centerCoordinate andZoomLevel:zoomLevel];
@@ -164,5 +164,19 @@
     return roundf(zoomLevel);
 }
 
+- (double) zoomLevelDouble {
+	MKCoordinateRegion region = self.region;
+
+	double centerPixelX = [MKMapView longitudeToPixelSpaceX: region.center.longitude];
+	double topLeftPixelX = [MKMapView longitudeToPixelSpaceX: region.center.longitude - region.span.longitudeDelta / 2];
+
+	double scaledMapWidth = (centerPixelX - topLeftPixelX) * 2;
+	CGSize mapSizeInPixels = self.bounds.size;
+	double zoomScale = scaledMapWidth / mapSizeInPixels.width;
+	double zoomExponent = log(zoomScale) / log(2);
+	double zoomLevel = 20 - zoomExponent;
+
+	return zoomLevel;
+}
 
 @end

@@ -11,5 +11,6 @@
                                 centerCoordinate:(CLLocationCoordinate2D)centerCoordinate
 								andZoomLevel:(NSUInteger)zoomLevel;
 - (NSUInteger) zoomLevel;
+- (double) zoomLevelDouble;
 
 @end
