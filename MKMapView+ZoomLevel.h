@@ -3,14 +3,14 @@
 
 @interface MKMapView (ZoomLevel)
 
-- (void)setCenterCoordinate:(CLLocationCoordinate2D)centerCoordinate
-    zoomLevel:(NSUInteger)zoomLevel
-    animated:(BOOL)animated;
+- (void)zl_setCenterCoordinate:(CLLocationCoordinate2D)centerCoordinate
+					 zoomLevel:(NSUInteger)zoomLevel
+					  animated:(BOOL)animated;
 
--(MKCoordinateRegion)coordinateRegionWithMapView:(MKMapView *)mapView
-                                centerCoordinate:(CLLocationCoordinate2D)centerCoordinate
-								andZoomLevel:(NSUInteger)zoomLevel;
-- (NSUInteger) zoomLevel;
-- (double) zoomLevelDouble;
+-(MKCoordinateRegion)zl_coordinateRegionWithMapView:(MKMapView *)mapView
+								   centerCoordinate:(CLLocationCoordinate2D)centerCoordinate
+									   andZoomLevel:(NSUInteger)zoomLevel;
+- (NSUInteger)zl_zoomLevel;
+- (double)zl_zoomLevelDouble;
 
 @end
